@@ -1,7 +1,12 @@
-var blobStorageParams = loadJsonContent('./parameters/BlobStorage-param/BlobStorage.json')
+param location string = resourceGroup().location
 
-resource storage 'Microsoft.Storage/storageAccounts@2023-04-01' existing = {
-  name: '${blobStorageParams[0].storagePrefix}${uniqueString(resourceGroup().id)}'
+var blobStorageParamsArray = loadJsonContent('./parameters/BlobStorage-param/BlobStorage.json')
+
+module storageModule './resources/BlobStorage/BlobStorage.bicep' = {
+  name: 'storageModule'
+  params: {
+    uniqueStorageName: '${blobStorageParamsArray[0].storagePrefix}${uniqueString(resourceGroup().id)}'
+    storageSKU: blobStorageParamsArray[0].storageSKU
+    location: location
+  }
 }
-
-output blobEndpoint string = storage.properties.primaryEndpoints.blob
