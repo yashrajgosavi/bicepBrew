@@ -23,7 +23,7 @@ jobs:
           failOnStdErr: false
           deploymentMode: "Validate"
 
-      - name: Deploy Bicep Template
+      - name: Destroy Resources
         uses: azure/arm-deploy@v1
         with:
           scope: "resourcegroup"
