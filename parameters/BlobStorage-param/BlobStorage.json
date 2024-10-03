@@ -1,4 +1,10 @@
-{
-  "storagePrefix": "brewstorage",
-  "storageSKU": "Standard_LRS"
-}
+[
+  {
+    "storagePrefix": "brewstorage",
+    "storageSKU": "Standard_LRS"
+  },
+  {
+    "storagePrefix": "brewstore",
+    "storageSKU": "Standard_LRS"
+  }
+]

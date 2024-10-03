@@ -1,4 +1,4 @@
-param storagePrefix string
+param uniqueStorageName string
 
 @allowed([
   'Standard_LRS'
@@ -14,9 +14,6 @@ param storageSKU string
 
 // Use the location from the resource group
 param location string = resourceGroup().location
-
-// Generate a unique storage name using prefix and suffix
-var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
 
 // Define the Storage Account resource
 resource stg 'Microsoft.Storage/storageAccounts@2021-04-01' = {
