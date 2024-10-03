@@ -1,4 +1,4 @@
-name: Destroy Azure Resources
+name: destroy.yml
 on:
   workflow_dispatch:
 jobs:
