@@ -65,7 +65,7 @@ az ad sp create-for-rbac --name {app-name} --role contributor --scopes /subscrip
 
 Replace `{app-name}` with your application name and `{subscription-id}` with your subscription ID.
 
-#### Custom Parameter Loading Approach
+### Step 6: Create a bicep template for deployment
 
 The current setup differs slightly from the standard approach. Instead of defining parameters inline, we're using a custom method:
 
@@ -78,3 +78,55 @@ var blobStorageParams = loadJsonContent('./parameters/BlobStorage-param/BlobStor
 ```
 
 4. Deploy the Bicep template using the GitHub Actions workflow.
+
+### Step 7: Create a bicep template for resource management
+
+There are two main approaches for managing resources with Bicep:
+
+1. **Incremental Mode**: This is the default mode and is suitable for most scenarios.
+
+   ```bicep
+   targetScope = 'resourceGroup'
+
+   param mode string = 'Incremental'
+
+   resource exampleResource 'Microsoft.Web/sites@2021-02-01' existing = {
+     name: 'exampleSite'
+     location: 'East US'
+     sku: {
+       name: 'Free'
+     }
+   }
+
+   output exampleOutput string = mode
+   ```
+
+2. **Complete Mode**: This mode allows for more aggressive resource management, including deletion of resources not specified in the template.
+
+   ```bicep
+   targetScope = 'resourceGroup'
+
+   param mode string = 'Complete'
+
+   resource exampleResource 'Microsoft.Web/sites@2021-02-01' existing = {
+     name: 'exampleSite'
+     location: 'East US'
+     sku: {
+       name: 'Free'
+     }
+   }
+
+   output exampleOutput string = mode
+   ```
+
+Key points to consider:
+
+- **Incremental Mode**: This is the default mode and is suitable for most scenarios. It will update existing resources but won't delete resources not specified in the template.
+
+- **Complete Mode**: This mode allows for more aggressive resource management. It will delete resources not specified in the template. Be cautious when using this mode as it can lead to unintended deletions.
+
+**Note**: If u wanna delete a particular resource just don't define it in the script
+
+- Only root-level templates support Complete mode. Linked or nested templates must use Incremental mode.
+
+- Subscription level deployments don't support Complete mode.
