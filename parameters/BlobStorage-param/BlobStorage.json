@@ -1,4 +1,4 @@
 {
-  "storageSuffix": "BlobStorage",
+  "storagePrefix": "brewstorage",
   "storageSKU": "Standard_LRS"
 }
