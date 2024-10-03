@@ -1,0 +1,4 @@
+{
+  "storageSuffix": "BlobStorage",
+  "storageSKU": "Standard_LRS"
+}
