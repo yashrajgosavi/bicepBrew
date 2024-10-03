@@ -7,7 +7,7 @@ var blobStorageParamsArray = loadJsonContent('./parameters/BlobStorage-param/Blo
 // Module to deploy Blob Storage resources
 module storageModule './resources/BlobStorage/BlobStorage.bicep' = [
   for singleStorage in blobStorageParamsArray: {
-    name: 'storageModule=${singleStorage.storagePrefix}'
+    name: 'storageModule-${singleStorage.storagePrefix}'
     params: {
       uniqueStorageName: '${singleStorage.storagePrefix}${uniqueString(resourceGroup().id)}'
       storageSKU: singleStorage.storageSKU
