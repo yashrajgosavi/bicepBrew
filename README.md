@@ -125,8 +125,13 @@ Key points to consider:
 
 - **Complete Mode**: This mode allows for more aggressive resource management. It will delete resources not specified in the template. Be cautious when using this mode as it can lead to unintended deletions.
 
-**Note**: If u wanna delete a particular resource just don't define it in the script
+**Note:** If u wanna delete a particular resource just don't define it in the script
 
 - Only root-level templates support Complete mode. Linked or nested templates must use Incremental mode.
 
 - Subscription level deployments don't support Complete mode.
+
+
+**Note:** The module-definition will contain all the resources that u wanna deploy and just copy them and paste it in the deploy.bicep if u wanna deploy those resources
+
+**Note:** Define the module in the destroy.bicep that u dont wanna destroy and dont define the module that u wanna destroy

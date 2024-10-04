@@ -1,12 +1,12 @@
+// define the module that u dont wanna destroy and dont define the module that u wanna destroy
+
 param location string = resourceGroup().location
 
-var blobStorageParamsArray = loadJsonContent('./parameters/BlobStorage-param/BlobStorage.json')
-
-module storageModule './resources/BlobStorage/BlobStorage.bicep' = {
-  name: 'storageModule'
+module brewstore './resources/BlobStorage/BlobStorage.bicep' = {
+  name: 'brewstore'
   params: {
-    uniqueStorageName: '${blobStorageParamsArray[0].storagePrefix}${uniqueString(resourceGroup().id)}'
-    storageSKU: blobStorageParamsArray[0].storageSKU
+    uniqueStorageName: 'brewstore${uniqueString(resourceGroup().id)}'
+    storageSKU: 'Standard_LRS'
     location: location
   }
 }
