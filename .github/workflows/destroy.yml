@@ -20,7 +20,7 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: "./destroy.bicep"
-          parameters: objectId = ${{ vars.OBJECT_ID }}
+          parameters: objectId=${{ vars.OBJECT_ID }}
           failOnStdErr: false
           deploymentMode: "Validate"
 
@@ -31,6 +31,6 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: "./destroy.bicep"
-          parameters: objectId = ${{ vars.OBJECT_ID }}
+          parameters: objectId=${{ vars.OBJECT_ID }}
           failOnStdErr: false
           deploymentMode: "Complete"
