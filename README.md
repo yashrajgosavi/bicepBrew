@@ -70,11 +70,11 @@ Replace `{app-name}` with your application name and `{subscription-id}` with you
 The current setup differs slightly from the standard approach. Instead of defining parameters inline, we're using a custom method:
 
 1. Create a `parameters` folder in your project structure.
-2. Define parameter files within this folder (e.g., `BlobStorage-param/BlobStorage.json`).
+2. Define parameter files within this folder (e.g., `blob-storage-param/blob-storage.json`).
 3. Load parameters in your Bicep template using the `loadJsonContent()` function:
 
 ```bicep
-var blobStorageParams = loadJsonContent('./parameters/BlobStorage-param/BlobStorage.json')
+var blob-storageParams = loadJsonContent('./parameters/blob-storage-param/blob-storage.json')
 ```
 
 4. Deploy the Bicep template using the GitHub Actions workflow.

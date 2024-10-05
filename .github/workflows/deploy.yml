@@ -30,5 +30,6 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: "./deploy.bicep"
+          parameters: "objectId = ${{ secrets.OBJECT_ID }}"
           failOnStdErr: false
           deploymentMode: "Incremental"
