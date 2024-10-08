@@ -30,7 +30,6 @@ jobs:
           deploymentMode: "Validate"
 
       - name: Deploy Bicep Template
-        if: steps.validate-template.outputs.deploymentResult == 'Success'
         uses: azure/arm-deploy@v1
         with:
           scope: "resourcegroup"
