@@ -47,7 +47,7 @@ module acrResource './resources/acr/acr.bicep' = {
     keyVault
   ]
   params: {
-    keyVaultName: keyVault.name
+    keyVaultName: vaultName
     acrName: 'brewacr'
     acrSku: 'Basic'
     location: location
