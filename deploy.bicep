@@ -1,9 +1,9 @@
 @description('Location for the resources')
 param location string = resourceGroup().location
 param appName string = 'brewBicep'
+
 param objectId string
 param tenantId string = subscription().tenantId
-
 @maxLength(24)
 param vaultName string = '${'kv-'}${appName}-${substring(uniqueString(resourceGroup().id), 0, 23 - (length(appName) + 3))}' // must be globally unique
 var keyVaultParams = loadJsonContent('./parameters/key-vault-param/brewkv.json')
@@ -15,7 +15,23 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
     location: location
     tenantId: subscription().tenantId
     sku: keyVaultParams.sku
-    accessPolicies: keyVaultParams.accessPolicies
+    accessPolicies: [
+      {
+        objectId: objectId
+        tenantId: tenantId
+        permissions: {
+          secrets: [
+            'all'
+          ]
+          certificates: [
+            'all'
+          ]
+          keys: [
+            'all'
+          ]
+        }
+      }
+    ]
     enabledForDeployment: keyVaultParams.enabledForDeployment
     enabledForDiskEncryption: keyVaultParams.enabledForDiskEncryption
     enabledForTemplateDeployment: keyVaultParams.enabledForTemplateDeployment
