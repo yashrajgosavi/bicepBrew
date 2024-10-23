@@ -1,5 +1,6 @@
 param location string = resourceGroup().location
 param appName string = 'brewBicep'
+param mainObjectId string
 param objectId string
 param tenantId string = subscription().tenantId
 
@@ -12,9 +13,24 @@ module keyVault '../../resources/key-vault/key-vault.bicep' = {
   params: {
     vaultName: vaultName
     location: location
-    tenantId: subscription().tenantId
+    tenantId: tenantId
     sku: keyVaultParams.sku
     accessPolicies: [
+      {
+        objectId: mainObjectId
+        tenantId: tenantId
+        permissions: {
+          secrets: [
+            'all'
+          ]
+          certificates: [
+            'all'
+          ]
+          keys: [
+            'all'
+          ]
+        }
+      }
       {
         objectId: objectId
         tenantId: tenantId
