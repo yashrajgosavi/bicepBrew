@@ -1,0 +1,33 @@
+{
+  "containerAppName": "mtaf-influxdb",
+  "acrName": "mtafecr",
+  "acrSecretName": "acr-auth",
+  "acrResourceGroup": "mtaf-dev",
+  "ingress": {
+    "external": true,
+    "targetPort": 8086,
+    "traffic": [
+      {
+        "weight": 100,
+        "latestRevision": true
+      }
+    ],
+    "allowInsecure": true,
+    "transport": "auto"
+  },
+  "containers": [
+    {
+      "name": "mtaf-influxdb-container",
+      "image": "docker.io/influxdb:2.7.1",
+      "resources": {
+        "cpu": 0.25,
+        "memory": "0.5Gi",
+        "ephemeralStorage": "1Gi"
+      }
+    }
+  ],
+  "scale": {
+    "minReplicas": 1,
+    "maxReplicas": 1
+  }
+}

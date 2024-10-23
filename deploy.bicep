@@ -26,12 +26,3 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
     ]
   }
 }
-
-module acrResource './resources/acr/acr.bicep' = {
-  name: 'acrResource'
-  params: {
-    acrName: 'brewacr'
-    acrSku: 'Basic'
-    location: location
-  }
-}
