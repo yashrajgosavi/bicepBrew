@@ -1,0 +1,29 @@
+{
+  "sku": "Standard",
+  "accessPolicies": [
+      {
+        "objectId": "${objectId}",
+        "tenantId": "${tenantId}",
+        "permissions": {
+          "secrets": [
+            "all"
+          ],
+          "certificates": [
+            "all"
+          ],
+          "keys": [
+            "all"
+          ]
+        }
+      }
+    ],
+    "enabledForDeployment": true,
+    "enabledForTemplateDeployment": true,
+    "enabledForDiskEncryption": true,
+    "enableRbacAuthorization": true,
+    "softDeleteRetentionInDays": 90,
+    "networkAcls": {
+      "ipRules": [],
+      "virtualNetworkRules": []
+    }
+}

@@ -1,19 +1,34 @@
-param location string
 param vaultName string
-@description('The object ID of the service principal to grant key vault access')
-param userAccessPolicies array
+param location string
+param sku string
+param tenantId string
 
-resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
+param accessPolicies array
+param enabledForDeployment bool
+param enabledForTemplateDeployment bool
+param enabledForDiskEncryption bool
+param enableRbacAuthorization bool
+param softDeleteRetentionInDays int
+param networkAcls object
+
+resource keyvault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
   name: vaultName
   location: location
   properties: {
+    tenantId: tenantId
     sku: {
       family: 'A'
-      name: 'standard'
+      name: sku
     }
-    tenantId: subscription().tenantId
-    accessPolicies: userAccessPolicies
-    enabledForDeployment: true // VMs can retrieve certificates
-    enabledForTemplateDeployment: true // ARM can retrieve values
+    accessPolicies: accessPolicies
+    enabledForDeployment: enabledForDeployment
+    enabledForDiskEncryption: enabledForDiskEncryption
+    enabledForTemplateDeployment: enabledForTemplateDeployment
+    softDeleteRetentionInDays: softDeleteRetentionInDays
+    enableRbacAuthorization: enableRbacAuthorization
+    networkAcls: networkAcls
   }
 }
+
+output keyVaultName string = keyvault.name
+output keyVaultId string = keyvault.id
