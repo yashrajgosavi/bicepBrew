@@ -22,13 +22,27 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
         tenantId: tenantId
         permissions: {
           secrets: [
-            'all'
+            'Get'
+            'List'
+            'Set'
+            'Delete'
+            'BackslashExport'
           ]
           certificates: [
-            'all'
+            'Get'
+            'List'
+            'Import'
+            'Update'
+            'Delete'
           ]
           keys: [
-            'all'
+            'Get'
+            'List'
+            'Create'
+            'Delete'
+            'Import'
+            'Update'
+            'BackslashExport'
           ]
         }
       }
@@ -37,13 +51,27 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
         tenantId: tenantId
         permissions: {
           secrets: [
-            'all'
+            'Get'
+            'List'
+            'Set'
+            'Delete'
+            'BackslashExport'
           ]
           certificates: [
-            'all'
+            'Get'
+            'List'
+            'Import'
+            'Update'
+            'Delete'
           ]
           keys: [
-            'all'
+            'Get'
+            'List'
+            'Create'
+            'Delete'
+            'Import'
+            'Update'
+            'BackslashExport'
           ]
         }
       }
