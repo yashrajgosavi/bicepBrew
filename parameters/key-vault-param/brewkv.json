@@ -2,8 +2,8 @@
   "sku": "Standard",
   "accessPolicies": [
       {
-        "objectId": "${objectId}",
-        "tenantId": "${tenantId}",
+        "objectId": "{{objectId}}",
+        "tenantId": "{{tenantId}}",
         "permissions": {
           "secrets": [
             "all"
