@@ -14,7 +14,7 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
   params: {
     vaultName: vaultName
     location: location
-    tenantId: subscription().tenantId
+    tenantId: tenantId
     sku: keyVaultParams.sku
     accessPolicies: [
       {
@@ -22,27 +22,13 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
         tenantId: tenantId
         permissions: {
           secrets: [
-            'Get'
-            'List'
-            'Set'
-            'Delete'
-            'BackslashExport'
+            'all'
           ]
           certificates: [
-            'Get'
-            'List'
-            'Import'
-            'Update'
-            'Delete'
+            'all'
           ]
           keys: [
-            'Get'
-            'List'
-            'Create'
-            'Delete'
-            'Import'
-            'Update'
-            'BackslashExport'
+            'all'
           ]
         }
       }
@@ -51,27 +37,13 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
         tenantId: tenantId
         permissions: {
           secrets: [
-            'Get'
-            'List'
-            'Set'
-            'Delete'
-            'BackslashExport'
+            'all'
           ]
           certificates: [
-            'Get'
-            'List'
-            'Import'
-            'Update'
-            'Delete'
+            'all'
           ]
           keys: [
-            'Get'
-            'List'
-            'Create'
-            'Delete'
-            'Import'
-            'Update'
-            'BackslashExport'
+            'all'
           ]
         }
       }
