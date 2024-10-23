@@ -1,6 +1,7 @@
 @description('Location for the resources')
 param location string = resourceGroup().location
 param appName string = 'brewBicep'
+param objectId string
 
 @maxLength(24)
 param vaultName string = '${'kv-'}${appName}-${substring(uniqueString(resourceGroup().id), 0, 23 - (length(appName) + 3))}' // must be globally unique
