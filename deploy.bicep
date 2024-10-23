@@ -43,6 +43,9 @@ module keyVault './resources/key-vault/key-vault.bicep' = {
 
 module acrResource './resources/acr/acr.bicep' = {
   name: 'acrResource'
+  dependsOn: [
+    keyVault
+  ]
   params: {
     keyVaultName: keyVault.name
     acrName: 'brewacr'
