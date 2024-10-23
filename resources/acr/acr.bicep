@@ -14,20 +14,20 @@ resource acrResource 'Microsoft.ContainerRegistry/registries@2023-01-01-preview'
   }
 }
 
-module setACRAdminPassword '../../resources/key-vault/set-secrets.bicep' = {
-  name: 'setACRAdminPassword'
-  params: {
-    keyVaultName: keyVaultName
-    secretName: 'ACRAdminPassword'
-    secretValue: acrResource.listCredentials().username
-  }
-}
-
 module setACRAdminUsername '../../resources/key-vault/set-secrets.bicep' = {
   name: 'setACRAdminUsername'
   params: {
     keyVaultName: keyVaultName
     secretName: 'ACRAdminUsername'
+    secretValue: acrResource.listCredentials().username
+  }
+}
+
+module setACRAdminPassword '../../resources/key-vault/set-secrets.bicep' = {
+  name: 'setACRAdminPassword'
+  params: {
+    keyVaultName: keyVaultName
+    secretName: 'ACRAdminPassword'
     secretValue: acrResource.listCredentials().passwords[0].value
   }
 }
