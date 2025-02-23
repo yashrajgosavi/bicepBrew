@@ -1,5 +1,3 @@
-I understand you'd like me to rewrite the README file for the bicepBrew project. Here's an improved version based on the information provided:
-
 # Welcome to bicepBrew!
 
 ## Introduction
